@@ -1,0 +1,308 @@
+.hero {
+   min-height: 100vh;
+   @include adaptiv-value('padding-top', 210, 100, 1);
+   @include adaptiv-value('padding-bottom', 210, 40, 1);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   position: relative;
+
+   &__container {
+      width: 100%;
+      flex: 1 1 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+   }
+
+   &__main {
+      position: relative;
+      z-index: 2;
+      max-width: 506px;
+
+      @media (max-width: $md2+px){
+         max-width: 50%;
+      }
+      @media (max-width: $md3+px){
+         max-width: 100%;
+      }
+   }
+
+   &__title {
+      font-weight: 600;
+      font-size: 56px;
+      line-height: 130%;
+      letter-spacing: -0.01em;
+      color: #D1D1D7;
+      margin: 0px 0px 25px 0px;
+
+      @media (max-width: $md2+px){
+         font-size: 44px;
+         margin: 0px 0px 10px 0px;
+      }
+      @media (max-width: $md3+px){
+         font-size: 56px;
+      }
+      @media (max-width: $md4+px){
+         font-size: 33px;
+      }
+   }
+
+   &__descr {
+      font-size: 18px;
+      line-height: 150%;
+      color: #747486;
+      margin: 0px 0px 55px 0px;
+      
+      @media (max-width: $md2+px){
+         font-size: 16px;
+         margin: 0px 0px 40px 0px;
+      }
+      @media (max-width: $md3+px){
+         font-size: 18px;
+      }
+      @media (max-width: $md4+px){
+         font-size: 16px;
+         margin: 0px 0px 20px 0px;
+      }
+   }
+
+   &__form {
+   }
+
+   &__search {
+      width: 100%;
+      height: 68px;
+      position: relative;
+      background: #1F2143;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      margin: 0px 0px 50px 0px;
+      padding: 12px;
+
+      @media (max-width: $md2+px){
+         margin: 0px 0px 40px 0px;
+      }
+      @media (max-width: $md4+px){
+         height: 60px;
+         padding: 10px;
+         margin: 0px 0px 30px 0px;
+      }
+   }
+
+   &__items {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+   }
+
+   &__item{
+      color: #66678F;
+      font-size: 14px;
+      padding: 0 10px;
+      height: 37px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #66678F;
+      border-radius: 8px;
+      flex: 0 0 auto;
+      cursor: pointer;
+      transition: background .3s ease-in-out;
+      &:not(:last-child){
+         margin: 0px 10px 0px 0px;
+      }
+
+      @media (max-width: $md4+px){
+         font-size: 12px;
+         height: 35px;
+      }
+
+      @media(any-hover: hover){
+         &:hover{
+            background: lighten(#1F2143, 2);
+         }
+      }
+   }
+
+   &__scroll{
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+         height: 4px;
+      }
+      &::-webkit-scrollbar-thumb {
+         background: $darkBlue;
+         border-radius: 10px;
+      }
+   }
+
+   &__input {
+      flex: 1 1 auto;
+      min-width: 60%;
+      height: 100%;
+      padding: 0px 0px 0px 20px;
+      color: #747486;
+      font-size: 16px;
+      background: transparent;
+
+      @media (max-width: $md2+px){
+         min-width: 80%;
+      }
+      @media (max-width: $md3+px){
+         min-width: 40%;
+      }
+      @media (max-width: $md4+px){
+         min-width: 70%;
+         padding: 0px 0px 0px 10px;
+         font-size: 14px;
+      }
+
+      &:focus{
+         color: #D1D1D7;
+      }
+   }
+
+   &__btn {
+      flex: 0 0 44px;
+      height: 44px;
+      margin: 0px 0px 0px 12px;
+      background: #282B57;
+      border-radius: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s ease-in-out;
+
+      svg{
+         width: 24px;
+         height: 24px;
+         fill: transparent;
+         stroke: #9A9CCB;
+         transition: all .3s ease-in-out;
+      }
+
+      @media (max-width: $md4+px){
+         flex: 0 0 40px;
+         height: 40px;
+         margin: 0px 0px 0px 10px;
+
+         svg{
+            width: 20px;
+            height: 20px;
+         }
+      }
+
+      @media(any-hover: hover){
+         &:hover{
+            background: lighten(#282B57, 5);
+
+            svg{
+               stroke: #D1D1D7;
+            }
+         }
+      }
+   }
+
+   &__suggestions {
+      
+   }
+
+   &__bg {
+      position: absolute;
+      width: 57%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-position: center left;
+      background-size: contain;
+
+      @media (max-width: $md1+px){
+         width: 50%;
+      }
+      @media (max-width: $md3+px){
+         display: none;
+      }
+   }
+}
+
+.suggestions-hero {
+
+   &__title {
+      font-size: 18px;
+      color: #747486;
+      margin: 0px 0px 35px 0px;
+
+      @media (max-width: $md2+px){
+         margin: 0px 0px 20px 0px;
+      }
+      @media (max-width: $md3+px){
+         margin: 0px 0px 30px 0px;
+      }
+      @media (max-width: $md4+px){
+         margin: 0px 0px 20px 0px;
+      }
+   }
+
+   &__items {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0px -26px -24px -0px;
+
+      @media (max-width: $md2+px){
+         margin: 0px -10px -10px -0px;
+      }
+      @media (max-width: $md3+px){
+         margin: 0px -20px -20px -0px;
+      }
+      @media (max-width: $md4+px){
+         margin: 0px -10px -10px -0px;
+      }
+   }
+
+   &__item {
+      color: #66678F;
+      font-size: 14px;
+      padding: 0 18px;
+      height: 37px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #66678F;
+      border-radius: 8px;
+      margin: 0px 24px 24px 0px;
+      transition: all .3s ease-in-out;
+      cursor: pointer;
+
+      @media (max-width: $md2+px){
+         font-size: 11px;
+         height: 35px;
+         padding: 0 10px;
+         margin: 0px 10px 10px 0px;
+      }
+      @media (max-width: $md3+px){
+         font-size: 14px;
+         height: 37px;
+         padding: 0 18px;
+         margin: 0 20px 20px 0;
+      }
+      @media (max-width: $md4+px){
+         font-size: 11px;
+         height: 35px;
+         padding: 0 10px;
+         margin: 0px 10px 10px 0px;
+      }
+
+      @media(any-hover: hover){
+         &:hover{
+            background: #1F2143;
+         }
+      }
+   }
+}

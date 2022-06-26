@@ -1,0 +1,66 @@
+// base
+@import "./base/variables";
+@import "./base/mixins";
+@import "./base/fonts";
+@import "./base/icons";
+@import "./base/zeroing";
+@import "./base/select";
+// @import "./base/popup";
+@import "./base/burger";
+@import "./base/ui";
+// libs
+// @import "./libs/";
+// blocks
+@import "./blocks/header";
+@import "./blocks/footer";
+@import "./blocks/hero";
+
+
+// global styles
+._container {
+	max-width: $width + px;
+	margin: 0 auto;
+	@media (max-width: $md1+px) {
+		max-width: 970px;
+	}
+	@media (max-width: $md2+px) {
+		max-width: 750px;
+	}
+	@media (max-width: $md3+px) {
+		max-width: none;
+		padding: 0 10px;
+	}
+}
+
+.wrapper {
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	background: $darkBlue;
+}
+
+.page {
+  flex: 1 1 auto;
+}
+
+body{
+	&::-webkit-scrollbar {
+		width: 20px;
+	}
+	&::-webkit-scrollbar-track {
+		background: $darkBlue;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: #1F2143;
+		border-radius: 4px;
+		border: 3px solid $darkBlue;
+	}
+	&._lock{
+		overflow: hidden;
+	}
+}
+
+// media
+@import "./base/media";

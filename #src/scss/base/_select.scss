@@ -1,0 +1,129 @@
+.select {
+  position: relative;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0px 30px 0px 0px;
+
+  @media (max-width: $md1+px){
+      margin: 0px 15px 0px 0px;
+  }
+  @media (max-width: $md2+px){
+      height: 40px;
+      margin: 0px 10px 0px 0px;
+  }
+  
+  &[data-state='active'] {
+     .select__title {
+        &::after {
+           transform: translateY(-50%) rotate(-180deg);
+        }
+     }
+
+     .select__content {
+        opacity: 1;
+        visibility: visible;
+     }
+
+     .select__label + .select__input + .select__label {
+        max-height: 40px;
+        border-top-width: 1px;
+     }
+  }
+}
+.select__title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  img{
+      width: 24px;
+      height: 24px;
+      margin: 0px 0px 0px 4px;
+      object-fit: contain;
+      @media (max-width: $md2+px){
+         width: 20px;
+         height: 20px;
+      }
+  }
+
+  &::after {
+     content: '';
+     position: absolute;
+     top: 50%;
+     right: 0;
+     display: block;
+     width: 6px;
+     height: 6px;
+     transition: all 0.3s ease-in-out;
+     background: url('../img/svg/arrow-down.svg') center no-repeat;
+     transform: translateY(-50%);
+  }
+}
+.select__content {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  // width: calc(100% - 6px);
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 8;
+  
+}
+
+.select__main{
+   background-color: #fff;
+   border-radius: 4px;
+   overflow: hidden;
+}
+
+.select__input {
+  display: none;
+
+  &:checked + label {
+     pointer-events: none;
+     background-color: $orange;
+     color: $white;
+  }
+  &:disabled + label {
+     opacity: 0.6;
+     pointer-events: none;
+  }
+}
+.select__label {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  // width: 100%;
+  color: #111;
+  font-size: 14px;
+  min-height: 40px;
+  max-height: 0;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+
+  // & + input + & {
+  //    border-top: 0 solid #0097ac;
+  // }
+
+  @media(any-hover: hover){
+     &:hover {
+        color: $orange;
+     }
+  }
+}

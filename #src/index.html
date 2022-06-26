@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+	@@include('_head.html',{
+	"title":"Sinauw"
+	})
+	<body>
+		<div class="wrapper">
+			@@include('_header.html',{})
+			<main class="page">
+				<section class="hero">
+					<div class='hero__container _container'>
+						<div class="hero__main">
+							<h1 class="hero__title">
+								Grow Your Skills To Advance Your Career Path.
+							</h1>
+							<p class="hero__descr">
+								We have something big for you who want to level up!
+							</p>
+							<form action="#" class="hero__form">
+								<div class="hero__search">
+									<div class="hero__scroll">
+										<div class="hero__items"></div>
+										<input type="text"name='search' class="hero__input" data-value="What do you want to learn...">
+									</div>
+									<button class="hero__btn">
+										<svg>
+											<use xlink:href='img/sprite.svg#search'></use>
+										</svg>
+									</button>
+								</div>
+							</form>
+							<div class="hero__suggestions suggestions-hero">
+								<div class="suggestions-hero__title">Suggestions</div>
+								<ul class="suggestions-hero__items">
+									<li class="suggestions-hero__item" data-value="UI UX Design">
+										UI UX Design
+									</li>
+									<li class="suggestions-hero__item" data-value="CSS Fundamental">
+										CSS Fundamental
+									</li>
+									<li class="suggestions-hero__item" data-value="3D Design Illustration">
+										3D Design Illustration
+									</li>
+									<li class="suggestions-hero__item" data-value="Website Development">
+										Website Development
+									</li>
+									<li class="suggestions-hero__item" data-value="Logo Design">
+										Logo Design
+									</li>
+									<li class="suggestions-hero__item" data-value="Icon Design">
+										Icon Design
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="hero__bg _ibg">
+						<img src="./img/heroBg.png" alt="heroBg">
+					</div>
+				</section>
+			</main>
+			@@include('_footer.html',{})
+		</div>
+		<!-- @@include('_popup.html',{}) -->
+		@@include('_js.html',{})
+	</body>
+</html>
