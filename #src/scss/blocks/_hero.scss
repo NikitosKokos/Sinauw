@@ -1,7 +1,7 @@
 .hero {
    min-height: 100vh;
    @include adaptiv-value('padding-top', 210, 100, 1);
-   @include adaptiv-value('padding-bottom', 210, 40, 1);
+   @include adaptiv-value('padding-bottom', 210, 20, 1);
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -217,8 +217,9 @@
    &__bg {
       position: absolute;
       width: 57%;
-      height: 100%;
-      top: 0;
+      height: 90%;
+      top: 50%;
+      transform: translateY(-50%);
       left: 0;
       background-position: center left;
       background-size: contain;
