@@ -1,0 +1,213 @@
+.classes {
+   @include adaptiv-value('margin-top', 65, 20, 1);
+   @include adaptiv-value('margin-bottom', 65, 20, 1);
+
+   &__container {
+   }
+
+   &__title {
+   }
+
+   &__descr {
+      @include adaptiv-value('margin-bottom', 85, 40, 1);
+   }
+
+   &__items {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: flex-start;
+      gap: 32px;
+      @include adaptiv-value('margin-bottom', 50, 35, 1);
+
+      @media (max-width: $md1+px){
+         gap: 30px;
+      }
+      @media (max-width: $md2+px){
+         grid-template-columns: repeat(2, 1fr);
+      }
+      @media (max-width: $md3+px){
+         align-items: stretch;
+         gap: 20px;
+      }
+      @media (max-width: $md4+px){
+         grid-template-columns: 1fr;
+      }
+   }
+
+   &__item {
+      padding: 9px 9px 0 9px;
+      background: linear-gradient(180deg, #202246 -53.38%, rgba(40, 43, 87, 0.17) 100%);
+      border: 3px solid #212246;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+   }
+
+   &__img {
+      position: relative;
+      padding: 0px 0px 67.1% 0px;
+      border-radius: 10px;
+      overflow: hidden;
+   }
+
+   &__text {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid #292B56;
+   }
+
+   &__category {
+      margin: 24px 0px 8px 0px;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 150%;
+      color: #3BF5BD;
+   }
+
+   &__name {
+      flex: 1 1 auto;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 150%;
+      color: #D1D1D7;
+      margin: 0px 0px 12px 0px;
+
+      @media (max-width: $md1+px){
+         font-size: 14px;
+         margin: 0px 0px 5px 0px;
+      }
+      @media (max-width: $md2+px){
+         font-size: 18px;
+         margin: 0px 0px 12px 0px;
+      }
+   }
+
+   &__specification {
+      color: #747486;
+      font-size: 14px;
+      line-height: 150%;
+      margin: 0px 0px 20px 0px;
+
+      @media (max-width: $md1+px){
+         font-size: 10px;
+         margin: 0px 0px 15px 0px;
+      }
+      @media (max-width: $md2+px){
+         font-size: 14px;
+         margin: 0px 0px 20px 0px;
+      }
+   }
+
+   &__author {
+   }
+
+   &__captions{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      display: flex;
+   }
+
+   &__caption{
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 6px 16px;
+      font-size: 12px;
+      line-height: 150%;
+      color: #fff;
+   }
+
+   &__bottom {
+      margin: 8px 0px 24px 0px;
+      display: none;
+
+      @media (max-width: $md3+px){
+         margin: 4px 0px 20px 0px;
+      }
+   }
+
+   &__btn {
+      font-weight: 600;
+      height: 41px;
+      padding: 0 32px;
+      margin: 0 auto;
+
+      @media (max-width: $md1+px){
+         height: 37px;
+         padding: 0 28px;
+      }
+      @media (max-width: $md2+px){
+         height: 41px;
+         padding: 0 32px;
+      }
+   }
+
+   &__all {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+
+   &__show {
+      font-weight: 700;
+      font-size: 16px;
+      height: 51px;
+      padding: 0 32px;
+
+      @media (max-width: $md3+px){
+         height: 43px;
+         font-size: 14px;
+         padding: 0 25px;
+      }
+   }
+}
+
+.author-classes {
+   padding: 20px 0;
+   display: flex;
+   align-items: center;
+   @media (max-width: $md1+px){
+      padding: 15px 0;
+   }
+   @media (max-width: $md2+px){
+      padding: 20px 0;
+   }
+
+   &__img {
+      flex: 0 0 40px;
+      height: 40px;
+   }
+
+   &__text{
+      flex: 1 1 auto;
+      padding: 0px 0px 0px 15px;
+      @media (max-width: $md1+px){
+         padding: 0px 0px 0px 10px;
+      }
+      @media (max-width: $md2+px){
+         padding: 0px 0px 0px 20px;
+      }
+   }
+
+   &__name {
+      font-size: 14px;
+      line-height: 150%;
+      color: #D2D2D8;
+      margin: 0px 0px 2px 0px;
+      @media (max-width: $md1+px){
+         font-size: 13px;
+      }
+      @media (max-width: $md2+px){
+         font-size: 14px;
+      }
+   }
+
+   &__position {
+      font-size: 12px;
+      line-height: 150%;
+      color: #747486;
+   }
+}

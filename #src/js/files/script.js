@@ -62,4 +62,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
    });
 
+   // hover item
+   const hoverItems = document.querySelectorAll('.classes__item');
+   const hoverDuration = 500;
+
+   if(hoverItems){
+        if(isMobile.any()){
+            const itemBottoms = document.querySelectorAll('.classes__bottom');
+
+            itemBottoms.forEach(item => {
+                item.style.display = 'block';
+            });
+        }else{
+            hoverItems.forEach(item => {
+                let isCanHover = hoverDuration;
+                let interval;
+                item.addEventListener('mouseenter', () => {
+                    if(isCanHover === hoverDuration){
+                        isCanHover = 0;
+                        _slideDown(item.querySelector('.classes__bottom'), hoverDuration);
+                        clearInterval(interval);
+                        interval = setInterval(() => {
+                            if(isCanHover !== hoverDuration){
+                                isCanHover += 100;
+                            }
+                        }, 100);
+                    }
+                });
+                item.addEventListener('mouseleave', () => {
+                    if(isCanHover === hoverDuration){
+                        _slideUp(item.querySelector('.classes__bottom'), hoverDuration);                       
+                    }else if(interval){
+                        clearInterval(interval);
+                        isCanHover = 0;
+                        setTimeout(() => {
+                            _slideUp(item.querySelector('.classes__bottom'), hoverDuration);
+                            setTimeout(() => {
+                                isCanHover = hoverDuration;
+                            }, hoverDuration);
+                        }, hoverDuration - isCanHover);
+                    }
+                });
+            });            
+        }
+   }
+
 }); // end

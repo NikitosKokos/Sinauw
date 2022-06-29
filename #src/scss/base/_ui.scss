@@ -48,3 +48,48 @@
 }
 
 // main
+
+.title {
+	font-weight: 600;
+	@include adaptiv-value('font-size', 36, 20, 1);
+	line-height: 150%;
+	color: #D1D1D7;
+	text-align: center;
+	@include adaptiv-value('margin-bottom', 20, 10, 1);
+}
+
+.descr {
+	color: #747486;
+	@include adaptiv-value('font-size', 18, 16, 1);
+	line-height: 150%;
+	text-align: center;
+}
+
+.btn{
+	border-radius: 6px;
+	color: #fff;
+	background: $orange;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all .3s ease-in-out;
+
+	@media(any-hover: hover){
+		&:hover{
+			background: darken($orange, 15);
+		}
+	}
+
+	&_stroke{
+		color: $orange;
+		border: 1px solid $orange;
+		background: transparent;
+
+		@media(any-hover: hover){
+			&:hover{
+				color: #fff;
+				background: $orange;
+			}
+		}
+	}
+}

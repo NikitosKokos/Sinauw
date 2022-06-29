@@ -128,15 +128,8 @@
    &__btn {
       height: 41px;
       padding: 0 32px;
-      color: #fff;
       font-weight: 700;
       font-size: 14px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: $orange;
-      border-radius: 6px;
-      transition: all .3s ease-in-out;
 
       @media (max-width: $md2+px){
          padding: 0 25px;
@@ -144,12 +137,6 @@
       }
       @media (max-width: $md4+px){
          padding: 0 22px;
-      }
-
-      @media(any-hover: hover){
-         &:hover{
-            background: darken($orange, 15);
-         }
       }
    }
 }
