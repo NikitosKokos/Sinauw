@@ -9,13 +9,15 @@
 @import "./base/burger";
 @import "./base/ui";
 // libs
-// @import "./libs/";
+@import "./libs/swiper-bundle.min";
 // blocks
 @import "./blocks/header";
 @import "./blocks/footer";
 @import "./blocks/hero";
 @import "./blocks/benefits";
 @import "./blocks/classes";
+@import "./blocks/webinar";
+@import "./blocks/pricing";
 
 
 // global styles

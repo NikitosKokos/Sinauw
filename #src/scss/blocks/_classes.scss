@@ -1,6 +1,24 @@
 .classes {
    @include adaptiv-value('margin-top', 65, 20, 1);
    @include adaptiv-value('margin-bottom', 65, 20, 1);
+   position: relative;
+   z-index: 2;
+
+   &__decore{
+      position: absolute;
+      top: 400px;
+      left: 0;
+      width: min(40.6%, 585px);
+      height: auto;
+      z-index: -1;
+
+      @media (max-width: $md2+px){
+         width: 50%;
+      }
+      @media (max-width: $md3+px){
+         display: none;
+      }
+   }
 
    &__container {
    }

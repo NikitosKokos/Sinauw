@@ -1,5 +1,5 @@
 ._swiper {
-	overflow: hidden;
+	// overflow: hidden;
 	//.swiper-wrapper
 	> div {
 		width: 100%;
@@ -91,5 +91,10 @@
 				background: $orange;
 			}
 		}
+	}
+
+	&:disabled{
+		opacity: 0.5;
+		pointer-events: none;
 	}
 }

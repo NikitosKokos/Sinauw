@@ -7,6 +7,22 @@
    justify-content: center;
    position: relative;
 
+   &__decore{
+      position: absolute;
+      bottom: 340px;
+      right: 0;
+      width: min(43.6%, 628px);
+      height: auto;
+      transform: translateY(100%);
+
+      @media (max-width: $md2+px){
+         width: 50%;
+      }
+      @media (max-width: $md3+px){
+         display: none;
+      }
+   }
+
    &__container {
       width: 100%;
       flex: 1 1 100%;

@@ -1,6 +1,8 @@
 .benefits {
    @include adaptiv-value('padding-top', 120, 30, 1);
    @include adaptiv-value('padding-bottom', 100, 60, 1);
+   position: relative;
+   z-index: 2;
 
    &__container {
       display: grid;

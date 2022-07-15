@@ -78,36 +78,106 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }else{
             hoverItems.forEach(item => {
-                let isCanHover = hoverDuration;
+                let timePass = hoverDuration;
+                let isCanHover = true;
                 let interval;
                 item.addEventListener('mouseenter', () => {
-                    if(isCanHover === hoverDuration){
-                        isCanHover = 0;
+                    if(timePass === hoverDuration){
+                        timePass = 0;
                         _slideDown(item.querySelector('.classes__bottom'), hoverDuration);
-                        clearInterval(interval);
+                        interval = clearInterval(interval);
                         interval = setInterval(() => {
-                            if(isCanHover !== hoverDuration){
-                                isCanHover += 100;
+                            if(timePass !== hoverDuration){
+                                timePass += 1;
                             }
-                        }, 100);
+                        }, 1);
                     }
                 });
                 item.addEventListener('mouseleave', () => {
-                    if(isCanHover === hoverDuration){
-                        _slideUp(item.querySelector('.classes__bottom'), hoverDuration);                       
-                    }else if(interval){
-                        clearInterval(interval);
-                        isCanHover = 0;
+                    if(timePass === hoverDuration){
+                        interval = clearInterval(interval);
+                        _slideUp(item.querySelector('.classes__bottom'), hoverDuration);
+                    }else if(isCanHover){
+                        interval = clearInterval(interval);
+                        isCanHover = false;
                         setTimeout(() => {
                             _slideUp(item.querySelector('.classes__bottom'), hoverDuration);
+                            timePass = 0;
                             setTimeout(() => {
-                                isCanHover = hoverDuration;
+                                timePass = hoverDuration;
+                                isCanHover = true;
                             }, hoverDuration);
-                        }, hoverDuration - isCanHover);
+                        }, hoverDuration - timePass);
                     }
                 });
             });            
         }
+   }
+
+   // slider
+   const sliderWebinar = document.querySelector('.webinar__slider');
+
+   function getFormatTime(time){
+        const newTime = String(Math.round(time));
+        const minutes = newTime.slice(0, -2) || 0;
+        let seconds = newTime.slice(-2);
+        if(seconds.length === 1){
+            seconds = `0${seconds}`;
+        }
+        return `${minutes}:${seconds}`;
+   }
+
+   if(sliderWebinar){
+    function playVideo(item){
+        const video = item.querySelector('.item-webinar__video video');
+        const title = item.querySelector('.item-webinar__title');
+        const bottom = item.querySelector('.item-webinar__bottom');
+        const playBtn = item.querySelector('.item-webinar__play');
+
+        item.classList.add('play');
+        title.classList.add('hide');
+        bottom.classList.add('hide');
+        playBtn.classList.add('hide');
+        video.play();
+
+        setTimeout(() => {
+            item.addEventListener('click', pauseVideo);  
+        }, 0);
+    }
+
+    function pauseVideo(e){
+        const item = e.target.closest('.item-webinar');
+        const video = item.querySelector('.item-webinar__video video');
+        const title = item.querySelector('.item-webinar__title');
+        const bottom = item.querySelector('.item-webinar__bottom');
+        const playBtn = item.querySelector('.item-webinar__play');
+
+        item.classList.remove('play');
+        title.classList.remove('hide');
+        bottom.classList.remove('hide');
+        playBtn.classList.remove('hide');
+        video.pause();
+        item.removeEventListener('click', pauseVideo);
+    }
+
+    document.querySelectorAll('.item-webinar').forEach(item => {
+        const video = item.querySelector('.item-webinar__video video');
+        video.addEventListener('loadeddata', () => {
+            item.querySelector('.item-webinar__all-time').textContent = getFormatTime(video.duration);
+        })
+        video.addEventListener('timeupdate', () => {
+            item.querySelector('.item-webinar__current-time').textContent = getFormatTime(video.currentTime);
+        });
+        item.querySelector('.item-webinar__play').addEventListener('click', () => {
+            playVideo(item);
+        });
+        item.querySelector('.item-webinar__zoom').addEventListener('click', () => {
+            item.classList.toggle('zoom');
+            document.body.classList.toggle('_lock');
+            document.querySelector('.webinar').classList.toggle('high');
+        });
+    });
+
    }
 
 }); // end
@@ -978,5 +1048,95 @@ if (selectSingle) {
    });
 };
 // @ @include("files/tabs.js",{});
-// @ @include("files/sliders.js",{});
+//BildSlider
+let sliders = document.querySelectorAll('._swiper');
+if (sliders) {
+	for (let index = 0; index < sliders.length; index++) {
+		let slider = sliders[index];
+		if (!slider.classList.contains('swiper-bild')) {
+			let slider_items = slider.children;
+			if (slider_items) {
+				for (let index = 0; index < slider_items.length; index++) {
+					let el = slider_items[index];
+					el.classList.add('swiper-slide');
+				}
+			}
+			let slider_content = slider.innerHTML;
+			let slider_wrapper = document.createElement('div');
+			slider_wrapper.classList.add('swiper-wrapper');
+			slider_wrapper.innerHTML = slider_content;
+			slider.innerHTML = '';
+			slider.appendChild(slider_wrapper);
+			slider.classList.add('swiper-bild');
+		}
+		if (slider.classList.contains('_gallery')) {
+			//slider.data('lightGallery').destroy(true);
+		}
+	}
+	sliders_bild_callback();
+}
+
+function sliders_bild_callback(params) { }
+
+let slider_about = new Swiper('.about__slider', {
+	/*
+	effect: 'fade',
+	autoplay: {
+		delay: 3000,
+		disableOnInteraction: false,
+	},
+	*/
+	observer: true,
+	observeParents: true,
+	slidesPerView: 1,
+	spaceBetween: 0,
+	autoHeight: true,
+	speed: 800,
+	//touchRatio: 0,
+	//simulateTouch: false,
+	//loop: true,
+	//preloadImages: false,
+	//lazy: true,
+	// Dotts
+	//pagination: {
+	//	el: '.slider-quality__pagging',
+	//	clickable: true,
+	//},
+	// Arrows
+	navigation: {
+		nextEl: '.about__more .more__item_next',
+		prevEl: '.about__more .more__item_prev',
+	},
+	/*
+	breakpoints: {
+		320: {
+			slidesPerView: 1,
+			spaceBetween: 0,
+			autoHeight: true,
+		},
+		768: {
+			slidesPerView: 2,
+			spaceBetween: 20,
+		},
+		992: {
+			slidesPerView: 3,
+			spaceBetween: 20,
+		},
+		1268: {
+			slidesPerView: 4,
+			spaceBetween: 30,
+		},
+	},
+	*/
+	on: {
+		lazyImageReady: function () {
+			ibg();
+		},
+	}
+	// And if we need scrollbar
+	//scrollbar: {
+	//	el: '.swiper-scrollbar',
+	//},
+});
+;
     
