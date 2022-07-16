@@ -1,5 +1,7 @@
 .pricing {
-   padding: 85px 0px 115px 0px;
+   @include adaptiv-value('padding-top', 85, 40, 1);
+   @include adaptiv-value('padding-bottom', 115, 60, 1);
+
 
    &__container {
    }

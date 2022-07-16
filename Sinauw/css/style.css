@@ -1789,7 +1789,8 @@ button.swiper-pagination-bullet {
 }
 
 .webinar {
-  padding: 110px 0 85px 0;
+  padding-top: 110px;
+  padding-bottom: 85px;
   position: relative;
   z-index: 2;
 }
@@ -1799,7 +1800,7 @@ button.swiper-pagination-bullet {
 }
 
 .webinar__descr {
-  margin: 0px 0px 105px 0px;
+  padding-bottom: 105px;
 }
 
 .webinar__slider {
@@ -2111,7 +2112,8 @@ button.swiper-pagination-bullet {
 }
 
 .pricing {
-  padding: 85px 0px 115px 0px;
+  padding-top: 85px;
+  padding-bottom: 115px;
 }
 
 .pricing__descr {
@@ -2269,6 +2271,129 @@ button.swiper-pagination-bullet {
   border: none;
 }
 
+.app {
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+.app__body {
+  background: url("../img/wallpaper.jpg") 0 0/cover no-repeat;
+  border-radius: 40px;
+  padding: 0px 105px 0px 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  -webkit-animation: hue 3s infinite alternate;
+          animation: hue 3s infinite alternate;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+.app__body:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-filter: blur(3rem);
+          filter: blur(3rem);
+  z-index: -1;
+  -webkit-transform: scale(2);
+      -ms-transform: scale(2);
+          transform: scale(2);
+}
+
+@-webkit-keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(-30deg);
+            filter: hue-rotate(-30deg);
+  }
+
+  to {
+    -webkit-filter: hue-rotate(10deg);
+            filter: hue-rotate(10deg);
+  }
+}
+
+@keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(-30deg);
+            filter: hue-rotate(-30deg);
+  }
+
+  to {
+    -webkit-filter: hue-rotate(10deg);
+            filter: hue-rotate(10deg);
+  }
+}
+
+.app__text {
+  padding: 0px 10px 0px 0px;
+}
+
+.app__title {
+  font-weight: 600;
+  font-size: 47px;
+  line-height: 160%;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0px 0px 12px 0px;
+  padding: 85px 0px 0px 0px;
+  max-width: 451px;
+}
+
+.app__descr {
+  font-size: 18px;
+  line-height: 180%;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0px 0px 40px 0px;
+  max-width: 406px;
+}
+
+.app__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0px 0px 105px 0px;
+}
+
+.app__google {
+  margin: 0px 25px 0px 0px;
+}
+
+.app__img {
+  padding: 40px 0px 0px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.app__img img {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 402px;
+          flex: 0 0 402px;
+  width: 402px;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 ._container {
   max-width: 1200px;
   margin: 0 auto;
@@ -2384,6 +2509,19 @@ body._lock {
     padding-top: 20px;
   }
 
+  .app__body {
+    padding: 0px 50px 0px 50px;
+  }
+
+  .app__title {
+    font-size: 44px;
+    padding: 80px 0px 0px 0px;
+  }
+
+  .app__buttons {
+    padding: 0px 0px 100px 0px;
+  }
+
   ._container {
     max-width: 970px;
   }
@@ -2434,8 +2572,36 @@ body._lock {
     margin-bottom: calc(35px + 15 * ((100vw - 320px) / 880));
   }
 
+  .webinar {
+    padding-top: calc(50px + 60 * ((100vw - 320px) / 880));
+  }
+
+  .webinar {
+    padding-bottom: calc(40px + 45 * ((100vw - 320px) / 880));
+  }
+
+  .webinar__descr {
+    padding-bottom: calc(40px + 65 * ((100vw - 320px) / 880));
+  }
+
+  .pricing {
+    padding-top: calc(40px + 45 * ((100vw - 320px) / 880));
+  }
+
+  .pricing {
+    padding-bottom: calc(60px + 55 * ((100vw - 320px) / 880));
+  }
+
   .pricing__descr {
     margin-bottom: calc(40px + 45 * ((100vw - 320px) / 880));
+  }
+
+  .app {
+    padding-top: calc(20px + 40 * ((100vw - 320px) / 880));
+  }
+
+  .app {
+    padding-bottom: calc(40px + 60 * ((100vw - 320px) / 880));
   }
 }
 
@@ -2542,6 +2708,32 @@ body._lock {
 
   .pricing__body {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .app__body:after {
+    -webkit-transform: scale(3);
+        -ms-transform: scale(3);
+            transform: scale(3);
+  }
+
+  .app__body {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 0px 100px 0px 100px;
+  }
+
+  .app__title {
+    padding: 60px 0px 0px 0px;
+  }
+
+  .app__buttons {
+    padding: 0px 0px 60px 0px;
+  }
+
+  .app__img {
+    padding: 0px 0px 0px 0px;
   }
 
   ._container {
@@ -2737,6 +2929,28 @@ body._lock {
     grid-template-columns: 1fr;
   }
 
+  .app__body {
+    padding: 0px 40px 0px 40px;
+  }
+
+  .app__title {
+    font-size: 38px;
+    line-height: 140%;
+  }
+
+  .app__descr {
+    max-width: none;
+    font-size: 20px;
+    margin: 0px 0px 30px 0px;
+  }
+
+  .app__img img {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+    width: 100%;
+  }
+
   ._container {
     max-width: none;
     padding: 0 10px;
@@ -2829,6 +3043,71 @@ body._lock {
   .card-pricing__img {
     margin: 0px 20px 0px 0px;
   }
+
+  .app__body:after {
+    -webkit-transform: scale(4);
+        -ms-transform: scale(4);
+            transform: scale(4);
+  }
+
+@-webkit-keyframes hue {
+    from {
+      -webkit-filter: hue-rotate(-30deg);
+              filter: hue-rotate(-30deg);
+    }
+
+    to {
+      -webkit-filter: hue-rotate(10deg);
+              filter: hue-rotate(10deg);
+    }
+}
+
+@keyframes hue {
+    from {
+      -webkit-filter: hue-rotate(-30deg);
+              filter: hue-rotate(-30deg);
+    }
+
+    to {
+      -webkit-filter: hue-rotate(10deg);
+              filter: hue-rotate(10deg);
+    }
+}
+
+  .app__body {
+    padding: 0px 30px 0px 30px;
+    border-radius: 30px;
+  }
+
+  .app__title {
+    padding: 30px 0px 0px 0px;
+  }
+
+  .app__descr {
+    font-size: 18px;
+  }
+
+  .app__buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 0px 0px 40px 0px;
+  }
+
+  .app__google {
+    margin: 0px 0px 20px 0px;
+  }
+
+  .app__google img {
+    width: 200px;
+    height: auto;
+  }
+
+  .app__apple img {
+    width: 180px;
+    height: auto;
+  }
 }
 
 @media (max-width: 991.98px) and (min-width: 767.98px) {
@@ -2905,3 +3184,5 @@ body._lock {
 }
 
 .webp .card-pricing_popular:before{ background: url(../img/pricing/popular.webp) top right/98px 98px no-repeat; }
+
+.webp .app__body{ background: url(../img/wallpaper.webp) 0 0/cover no-repeat; }

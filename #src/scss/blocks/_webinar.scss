@@ -1,5 +1,6 @@
-.webinar {
-   padding: 110px 0 85px 0;
+.webinar {  
+   @include adaptiv-value('padding-top', 110, 50, 1);
+   @include adaptiv-value('padding-bottom', 85, 40, 1);
    position: relative;
    z-index: 2;
 
@@ -14,7 +15,7 @@
    }
 
    &__descr {
-      margin: 0px 0px 105px 0px;
+      @include adaptiv-value('padding-bottom', 105, 40, 1);
    }
 
    &__slider {
