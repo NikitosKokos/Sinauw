@@ -1,0 +1,236 @@
+.footer {
+   padding: 0 0 30px 0;
+   @include adaptiv-value('padding-top', 50, 30, 1);
+
+   &__content {
+   }
+
+   &__body {
+      display: flex;
+      @media (max-width: $md2+px){
+         flex-wrap: wrap;
+         margin: 0 -5px;
+      }
+      @media (max-width: $md4+px){
+         display: block;
+         margin: 0;
+      }
+   }
+
+   &__main {
+      flex: 1 1 auto;
+      margin: 0px 121px 0px 0px;
+
+      @media (max-width: $md1+px){
+         margin: 0px 60px 0px 0px;
+      }
+      @media (max-width: $md2+px){
+         flex: 0 0 50%;
+         margin: 0px 0px 50px 0px;
+         padding: 0 5px;
+      }
+      @media (max-width: $md4+px){
+         padding: 0;
+      }
+   }
+
+   &__logo {
+      margin: 0px 0px 8px 0px;
+
+      img{
+         width: 118px;
+         height: auto;
+      }
+   }
+
+   &__descr {
+      color: #868796;
+      font-size: 16px;
+      line-height: 170%;
+      margin: 0px 0px 20px 0px;
+      max-width: 234px;
+
+      @media (max-width: $md3+px){
+         font-size: 14px;
+      }
+      @media (max-width: $md4+px){
+         font-size: 16px;
+      }
+   }
+
+   &__social {
+   }
+
+   &__item {
+      &:not(:last-child){
+         margin: 0px 81px 0px 0px;
+         @media (max-width: $md1+px){
+            margin: 0px 50px 0px 0px;
+         }
+         @media (max-width: $md2+px){
+            margin: 0px 0px 50px 0px;
+         }
+      }
+
+      @media (max-width: $md2+px){
+         flex: 0 0 50%;
+         padding: 0 5px;
+      }
+      @media (max-width: $md4+px){
+         padding: 0;
+      }
+   }
+
+   &__title {
+      color: #d1d1d7;
+      font-weight: 700;
+      font-size: 20px;
+      margin: 0px 0px 24px 0px;
+
+      @media (max-width: $md1+px){
+         font-size: 16px;
+         margin: 0px 0px 20px 0px;
+      }
+      @media (max-width: $md2+px){
+         font-size: 20px;
+         margin: 0px 0px 24px 0px;
+      }
+      @media (max-width: $md3+px){
+         font-size: 18px;
+         margin: 0px 0px 20px 0px;
+      }
+      @media (max-width: $md4+px){
+         font-size: 20px;
+         margin: 0px 0px 24px 0px;
+      }
+   }
+
+   &__list {
+      li{
+         &:not(:last-child){
+            margin: 0px 0px 20px 0px;
+            @media (max-width: $md1+px){
+               margin: 0px 0px 15px 0px;
+            }
+            @media (max-width: $md2+px){
+               margin: 0px 0px 20px 0px;
+            }
+            @media (max-width: $md3+px){
+               margin: 0px 0px 15px 0px;
+            }
+            @media (max-width: $md4+px){
+               margin: 0px 0px 20px 0px;
+            }
+         }
+      }
+   }
+
+   &__link {
+      color: #78798A;
+      font-size: 20px;
+      transition: all .3s ease-in-out;
+
+      @media (max-width: $md1+px){
+         font-size: 16px;
+      }
+      @media (max-width: $md2+px){
+         font-size: 20px;
+      }
+      @media (max-width: $md3+px){
+         font-size: 18px;
+      }
+      @media (max-width: $md4+px){
+         font-size: 20px;
+      }
+
+      @media(any-hover: hover){
+         &:hover{
+            color: #fff;
+         }
+      }
+   }
+
+   &__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 85px 0px 0px 0px;
+
+      @media (max-width: $md1+px){
+         margin: 70px 0px 0px 0px;
+      }
+      @media (max-width: $md4+px){
+         margin: 50px 0px 0px 0px;
+      }
+   }
+
+   &__copy {
+      font-size: 16px;
+      line-height: 1.3;
+      color: #8F91D0;
+      text-align: center;
+      // display: flex;
+      // align-items: center;
+
+      img{
+         width: 1em;
+         height: 1em;
+         margin: .15em 5px 0 5px;
+      }
+   }
+}
+
+.social-footer {
+   display: flex;
+   align-items: center;
+
+   &__item {
+      flex: 0 0 30px;
+      width: 30px;
+      height: 30px;
+
+      svg{
+         width: 100%;
+         height: 100%;
+         fill: #ACABBF;
+         transition: all .3s ease-in-out;
+      }
+
+      &:not(:last-child){
+         margin: 0px 30px 0px 0px;
+         @media (max-width: $md1+px){
+            margin: 0px 25px 0px 0px;
+         }
+         @media (max-width: $md2+px){
+            margin: 0px 30px 0px 0px;
+         }
+         @media (max-width: $md3+px){
+            margin: 0px 25px 0px 0px;
+         }
+      }
+
+      @media (max-width: $md1+px){
+         flex: 0 0 25px;
+         width: 25px;
+         height: 25px;
+      }
+      @media (max-width: $md2+px){
+         flex: 0 0 30px;
+         width: 30px;
+         height: 30px;
+      }
+      @media (max-width: $md3+px){
+         flex: 0 0 25px;
+         width: 25px;
+         height: 25px;
+      }
+
+      @media(any-hover: hover){
+         &:hover{
+            svg{
+               fill: #fff;
+            }
+         }
+      }
+   }
+}

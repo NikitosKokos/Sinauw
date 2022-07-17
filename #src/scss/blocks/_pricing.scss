@@ -1,6 +1,6 @@
 .pricing {
    @include adaptiv-value('padding-top', 85, 40, 1);
-   @include adaptiv-value('padding-bottom', 115, 60, 1);
+   @include adaptiv-value('padding-bottom', 115, 40, 1);
 
 
    &__container {
@@ -26,6 +26,9 @@
       }
       @media (max-width: $md3+px){
          grid-template-columns: 1fr;
+      }
+      @media (max-width: $md4+px){
+         gap: 20px;
       }
    }
 
@@ -160,8 +163,9 @@
          right: -3px;
          width: 98px;
          height: 98px;
-         background: url('../img/pricing/popular.png') top right / 98px 98px no-repeat;
-         border-radius: 0 22px 0 0;
+         background: url('../img/pricing/popular.svg') top right / 98px 98px no-repeat;
+         border-radius: 0 20px 0 0;
+         opacity: .8;
          overflow: hidden;
          z-index: 2;
       }
