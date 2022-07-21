@@ -1,6 +1,6 @@
 .webinar {  
    @include adaptiv-value('padding-top', 110, 50, 1);
-   @include adaptiv-value('padding-bottom', 85, 40, 1);
+   @include adaptiv-value('padding-bottom', 85, 30, 1);
    position: relative;
    z-index: 2;
 
@@ -21,9 +21,12 @@
    &__slider {
       margin: 0px 0px 55px 0px;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      .swiper-wrapper{
-         position: static;
+      @media (max-width: $md2+px){
+         margin: 0px 0px 30px 0px;
       }
    }
 
@@ -69,18 +72,46 @@
          }
       }
    }
+   &__pagination{
+      display: none;
+
+      @media (max-width: $md2+px){
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         margin: 0px 0px 30px 0px;
+      }
+   }
+   &__point{
+      flex: 0 0 15px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      margin: 0 5px;
+      background: rgba(226,226,244,.3);
+      transition: all .3s ease-in-out;
+      cursor: pointer;
+
+      @media (max-width: $md4+px){
+         flex: 0 0 13px;
+         width: 13px;
+         height: 13px;
+      }
+
+      &._active{
+         background: $orange;
+      }
+   }
 }
 
 .item-webinar {
-   // opacity: 0;
-   // visibility: hidden;
 
    &:before{
       content: '';
       position: fixed;
       width: 100vw;
       height: 100vh;
-      background: rgba(#000, .4);
+      background: rgba(#000, 1);
       opacity: 0;
       visibility: hidden;
    }
@@ -91,6 +122,10 @@
       border-radius: 23px;
       z-index: 2;
       overflow: hidden;
+
+      @media (max-width: $md4+px){
+         border-radius: 15px;
+      }
 
       &:before{
          content: '';
@@ -104,6 +139,10 @@
          border-radius: 23px;
          transition: background .2s ease-in-out;
          z-index: 2;
+
+         @media (max-width: $md4+px){
+            border-radius: 15px;
+         }
       }
    }
 
@@ -113,7 +152,444 @@
       }
    }
 
-   &.zoom{
+   &__video {
+      video{
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: 23px;
+      overflow: hidden;
+      @media (max-width: $md4+px){
+         border-radius: 15px;
+      }
+   }
+
+   &__title {
+      font-weight: 500;
+      font-size: 19px;
+      line-height: 150%;
+      color: rgba(255, 255, 255, 0.7);
+      width: 100%;
+      padding: 27px 10px 0 43px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      transition: transform .2s ease-in-out;
+
+      @media (max-width: $md1+px){
+         font-size: 18px;
+         padding: 25px 10px 0 40px;
+      }
+      @media (max-width: $md3+px){
+         padding: 20px 10px 0 30px;
+      }
+      @media (max-width: $md4+px){
+         font-size: 16px;
+         padding: 15px 5px 0 25px;
+      }
+      @media (max-width: 400px){
+         font-size: 14px;
+         padding: 13px 5px 0 20px;
+      }
+
+      &.hide{
+         transform: translateY(-100%);
+      }
+   }
+
+   &__play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50% , -50%);
+      width: 94px;
+      height: 94px;
+      border-radius: 50%;
+      background: rgba(226, 226, 244, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 5;
+      transition: background .2s ease-in-out;
+
+      svg{
+         width: 44px;
+         height: 44px;
+         fill: rgba(23, 24, 54, 0.81);
+
+         @media (max-width: $md1+px){
+            width: 38px;
+            height: 38px;
+         }
+         @media (max-width: $md3+px){
+            width: 33px;
+            height: 33px;
+         }
+         @media (max-width: 400px){
+            width: 30px;
+            height: 30px;
+         }
+      }
+
+      @media (max-width: $md1+px){
+         width: 80px;
+         height: 80px;
+      }
+      @media (max-width: $md3+px){
+         width: 70px;
+         height: 70px;
+      }
+      @media (max-width: 400px){
+         width: 63px;
+         height: 63px;
+      }
+
+      @media(any-hover: hover){
+         &:hover{
+            background: rgba(226, 226, 244, 0.4);
+         }
+      }
+
+      &.hide{
+         opacity: 0;
+         visibility: hidden;
+      }
+   }
+
+   &__time-slider {
+      background: rgba(226, 226, 244, 0.3);
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      height: 8px;
+      padding: 0 10px;
+      position: relative;
+
+      &:before{
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 10px;
+         height: 8px;
+         background: $orange;
+      }
+
+      .noUi-handle{
+         width: 16px;
+         height: 16px;
+         border-radius: 50%;
+         box-shadow: none;
+         background: $orange;
+         border: 2px solid #FEB6B6;
+         right: -8px;
+         top: -4px;
+         &:before, &:after{
+            display: none;
+         }
+
+         @media (max-width: 400px){
+            width: 14px;
+            height: 14px;
+            right: -7px;
+            top: -3px;
+         }
+      }
+
+      .noUi-connects{
+         border-radius: 0;
+      }
+
+      .noUi-connect{
+         background: $orange;
+      }
+   }
+
+   &__bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 3;
+      transition: all .2s ease-in-out;
+      padding: 10px 0px 0px 0px;
+
+      &.hide{
+         transform: translateY(100%);
+      }
+   }
+
+   &__info{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 43px 27px 43px;
+
+      @media (max-width: $md1+px){
+         padding: 20px 35px 23px 35px;
+      }
+      @media (max-width: $md3+px){
+         padding: 17px 30px 20px 30px;
+      }
+      @media (max-width: $md4+px){
+         padding: 13px 20px 15px 20px;
+      }
+      @media (max-width: 400px){
+         padding: 10px 15px 13px 15px;
+      }
+   }
+
+   &__time {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 150%;
+      color: rgba(255, 255, 255, 0.7);
+
+      @media (max-width: $md4+px){
+         font-size: 18px;
+      }
+      @media (max-width: 400px){
+         font-size: 16px;
+      }
+   }
+
+   &__current-time {
+   }
+
+   &__all-time {
+   }
+
+   &__buttons {
+      display: flex;
+      align-items: center;
+   }
+
+   &__mute {
+      flex: 0 0 24px;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      margin: 0px 24px 0px 0px;
+      svg{
+         width: 100%;
+         height: 100%;
+         path{
+            transition: all .3s ease-in-out;
+         }
+      }
+
+      @media (max-width: $md1+px){
+         margin: 0px 20px 0px 0px;
+      }
+      @media (max-width: $md4+px){
+         margin: 0px 15px 0px 0px;
+      }
+      @media (max-width: 400px){
+         flex: 0 0 20px;
+         width: 20px;
+         height: 20px;
+         margin: 0px 10px 0px 0px;
+      }
+
+      @media(any-hover: hover){
+         &:hover{
+            svg{
+               path{
+                  stroke: #fff;
+               }
+            }
+         }
+      }
+   }
+
+   &__zoom {
+      flex: 0 0 24px;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      svg{
+         width: 100%;
+         height: 100%;
+         path{
+            transition: all .3s ease-in-out;
+         }
+      }
+
+      @media (max-width: 400px){
+         flex: 0 0 20px;
+         width: 20px;
+         height: 20px;
+      }
+
+      @media(any-hover: hover){
+         &:hover{
+            svg{
+               path{
+                  stroke: #fff;
+               }
+            }
+         }
+      }
+   }
+
+   &._prev{
+      width: 450px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      opacity: 0.5;
+      transform: translateY(-50%);
+      perspective: 1000px;
+      z-index: 1;
+
+      @media (max-width: $md1+px){
+         width: 400px;
+      }
+      @media (max-width: $md2+px){
+         width: 0;
+      }
+      
+      .item-webinar__body{
+         padding: 57% 0 0 0;
+         perspective: 1000px;
+         transform-origin: top left;
+         transform: rotate(-1deg) rotateY(33deg) rotateX(5deg);
+         cursor: pointer;
+
+         &:before{
+            border: none;
+         }
+      }
+      .item-webinar__bottom{
+         display: none;
+      }
+      .item-webinar__title{
+         font-size: 18px;
+         padding: 20px 10px 0 35px;
+         transition: none;
+
+         @media (max-width: $md1+px){
+            font-size: 16px;
+            padding: 15px 10px 0 30px;
+         }
+      }
+      .item-webinar__play{
+         width: 80px;
+         height: 80px;
+         pointer-events: none;
+
+         svg{
+            width: 37px;
+            height: 37px;
+            @media (max-width: $md1+px){
+               width: 33px;
+               height: 33px;
+            }
+         }
+
+         @media (max-width: $md1+px){
+            width: 70px;
+            height: 70px;
+         }
+      }
+   }
+   &._active{
+      width: 622px;
+      position: relative;
+      z-index: 2;
+      
+      @media (max-width: $md1+px){
+         width: 520px;
+      }
+      @media (max-width: $md2+px){
+         width: 100%;
+      }
+
+      .item-webinar__body{
+         padding: 68.2% 0 0 0;
+
+         @media (max-width: $md2+px){
+            padding: 60% 0px 0px 0px;
+         }
+         @media (max-width: $md3+px){
+            padding: 65% 0px 0px 0px;
+         }
+         @media (max-width: $md4+px){
+            padding: 68% 0px 0px 0px;
+         }
+      }
+   }
+   &._next{
+      width: 450px;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      z-index: -1;
+      opacity: 0.5;
+      transform: translateY(-50%);
+      perspective: 1000px;
+      z-index: 1;
+
+      @media (max-width: $md1+px){
+         width: 400px;
+      }
+      @media (max-width: $md2+px){
+         width: 0;
+      }
+
+      .item-webinar__body{
+         padding: 57% 0 0 0;
+         perspective: 1000px;
+         transform-origin: top right;
+         transform: rotate(1deg) rotateY(-33deg) rotateX(5deg);
+         cursor: pointer;
+
+         &:before{
+            border: none;
+         }
+      }
+      .item-webinar__bottom{
+         display: none;
+      }
+      .item-webinar__title{
+         font-size: 18px;
+         padding: 20px 10px 0 35px;
+         transition: none;
+
+         @media (max-width: $md1+px){
+            font-size: 16px;
+            padding: 15px 10px 0 30px;
+         }
+      }
+      .item-webinar__play{
+         width: 80px;
+         height: 80px;
+         pointer-events: none;
+
+         svg{
+            width: 37px;
+            height: 37px;
+            @media (max-width: $md1+px){
+               width: 33px;
+               height: 33px;
+            }
+         }
+         @media (max-width: $md1+px){
+            width: 70px;
+            height: 70px;
+         }
+      }
+   }
+   &.webinar__item.zoom{
       position: fixed;
       top: 50%;
       transform: translate(-50%, -50%);
@@ -151,160 +627,6 @@
          &:before{
             border: none;
             border-radius: 0;
-         }
-      }
-   }
-
-   &__video {
-      video{
-         width: 100%;
-         height: 100%;
-         object-fit: cover;
-      }
-      position: absolute;
-      width: 100%;
-      height: auto;
-      top: 0;
-      left: 0;
-      border-radius: 23px;
-      overflow: hidden;
-   }
-
-   &__title {
-      font-weight: 500;
-      font-size: 19px;
-      line-height: 150%;
-      color: rgba(255, 255, 255, 0.7);
-      width: 100%;
-      padding: 27px 10px 0 43px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 3;
-      transition: all .2s ease-in-out;
-
-      &.hide{
-         transform: translateY(-100%);
-      }
-   }
-
-   &__play {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50% , -50%);
-      width: 94px;
-      height: 94px;
-      border-radius: 50%;
-      background: rgba(226, 226, 244, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      z-index: 5;
-      transition: all .2s ease-in-out;
-
-      svg{
-         width: 44px;
-         height: 44px;
-         fill: rgba(23, 24, 54, 0.81);
-      }
-
-      @media(any-hover: hover){
-         &:hover{
-            background: rgba(226, 226, 244, 0.4);
-         }
-      }
-
-      &.hide{
-         opacity: 0;
-         visibility: hidden;
-      }
-   }
-
-   &__time-slider {
-   }
-
-   &__bottom {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      z-index: 3;
-      transition: all .2s ease-in-out;
-
-      &.hide{
-         transform: translateY(100%);
-      }
-   }
-
-   &__info{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 43px 27px 43px;
-   }
-
-   &__time {
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 150%;
-      color: rgba(255, 255, 255, 0.7);
-   }
-
-   &__current-time {
-   }
-
-   &__all-time {
-   }
-
-   &__buttons {
-      display: flex;
-      align-items: center;
-   }
-
-   &__mute {
-      flex: 0 0 24px;
-      width: 24px;
-      height: 24px;
-      cursor: pointer;
-      margin: 0px 24px 0px 0px;
-      svg{
-         width: 100%;
-         height: 100%;
-         fill: none;
-         stroke: rgba(255, 255, 255, 0.7);
-         transition: all .3s ease-in-out;
-      }
-
-      @media(any-hover: hover){
-         &:hover{
-            svg{
-               stroke: #fff;
-            }
-         }
-      }
-   }
-
-   &__zoom {
-      flex: 0 0 24px;
-      width: 24px;
-      height: 24px;
-      cursor: pointer;
-      svg{
-         width: 100%;
-         height: 100%;
-         fill: none;
-         stroke: rgba(255, 255, 255, 0.7);
-         transition: all .3s ease-in-out;
-      }
-
-      @media(any-hover: hover){
-         &:hover{
-            svg{
-               stroke: #fff;
-            }
          }
       }
    }

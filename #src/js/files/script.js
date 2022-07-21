@@ -111,8 +111,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
    }
 
-   // slider
-   const sliderWebinar = document.querySelector('.webinar__slider');
+    // slider
+    const sliderWebinar = document.querySelector('.webinar__slider');
+    const webinarItems = document.querySelectorAll('.item-webinar');
+    const pagination = document.querySelector('.webinar__pagination');
+
+    for (let i = 0; i < webinarItems.length; i++) {
+        pagination.insertAdjacentHTML('beforeend', `
+            <div class="webinar__point" data-slide="${i}"></div>
+        `);
+    }
+    setActivePoint();
+
+    pagination.addEventListener('click', e => {
+        if(!!e.target.dataset.slide){
+            const activeItem = document.querySelector('.item-webinar._active');
+            removeVideoClasses(activeItem);
+            activeItem.removeEventListener('click', pauseVideo);
+            pagination.querySelectorAll('.webinar__point').forEach(item => item.classList.remove('_active'));
+            webinarItems.forEach(item => item.classList.remove('_active', '_next', '_prev'));
+            e.target.classList.add('_active');
+            webinarItems[e.target.dataset.slide].classList.add('_active');
+
+            const item = webinarItems[e.target.dataset.slide];
+            if(item.previousElementSibling){
+                item.previousElementSibling.classList.add('_prev');
+            }else{
+                webinarItems[webinarItems.length - 1].classList.add('_prev');
+            }
+            if(item.nextElementSibling){
+                item.nextElementSibling.classList.add('_next');
+            }else{
+                webinarItems[0].classList.add('_next');
+            }
+        }
+    });
+
+    function setActivePoint(){
+        webinarItems.forEach((item,i) => {
+            if(item.classList.contains('_active')){
+                const points = pagination.querySelectorAll('.webinar__point');
+                points.forEach(item => item.classList.remove('_active'));
+                points[i].classList.add('_active');
+            }
+        });
+    }
 
    function getFormatTime(time){
         const newTime = String(Math.round(time));
@@ -138,12 +181,11 @@ document.addEventListener('DOMContentLoaded', () => {
         video.play();
 
         setTimeout(() => {
-            item.addEventListener('click', pauseVideo);  
+            item.addEventListener('click', pauseVideo);
         }, 0);
     }
 
-    function pauseVideo(e){
-        const item = e.target.closest('.item-webinar');
+    function removeVideoClasses(item, isNeedPause = true){
         const video = item.querySelector('.item-webinar__video video');
         const title = item.querySelector('.item-webinar__title');
         const bottom = item.querySelector('.item-webinar__bottom');
@@ -153,20 +195,52 @@ document.addEventListener('DOMContentLoaded', () => {
         title.classList.remove('hide');
         bottom.classList.remove('hide');
         playBtn.classList.remove('hide');
-        video.pause();
+        if(isNeedPause) video.pause();
+    }
+
+    function pauseVideo(e){
+        const item = e.target.closest('.item-webinar');
+        removeVideoClasses(item);
         item.removeEventListener('click', pauseVideo);
     }
 
-    document.querySelectorAll('.item-webinar').forEach(item => {
+    
+    webinarItems.forEach(item => {
+        const slider = item.querySelector('.item-webinar__time-slider');
         const video = item.querySelector('.item-webinar__video video');
         video.addEventListener('loadeddata', () => {
             item.querySelector('.item-webinar__all-time').textContent = getFormatTime(video.duration);
+            noUiSlider.create(slider, {
+                start: 0,
+                connect: 'lower',
+                step: 1,
+                range: {
+                    'min': 0,
+                    'max': Math.round(video.duration)
+                }
+            });
+            slider.noUiSlider.on('change', (value) => {
+                video.currentTime = Number(value[0]);
+            });
+            slider.noUiSlider.on('update', (value) => {
+                if(video.duration === video.currentTime){
+                    removeVideoClasses(item, false); 
+                    item.removeEventListener('click', pauseVideo);
+                }
+            });
         })
         video.addEventListener('timeupdate', () => {
             item.querySelector('.item-webinar__current-time').textContent = getFormatTime(video.currentTime);
+            slider.noUiSlider.set(Math.round(video.currentTime));
         });
         item.querySelector('.item-webinar__play').addEventListener('click', () => {
+            if(Math.round(video.duration) === Math.round(video.currentTime)){
+                video.currentTime = 0;
+            }
             playVideo(item);
+        });
+        item.querySelector('.item-webinar__mute').addEventListener('click', () => {
+            video.muted = !video.muted;
         });
         item.querySelector('.item-webinar__zoom').addEventListener('click', () => {
             item.classList.toggle('zoom');
@@ -174,7 +248,44 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.webinar').classList.toggle('high');
         });
     });
-
    }
+
+   // webinar slider
+   webinarItems.forEach(item => {
+        item.querySelector('.item-webinar__body').addEventListener('click', () => {
+            if(!item.classList.contains('_active')){
+                const activeItem = document.querySelector('.item-webinar._active');
+                removeVideoClasses(activeItem);
+                if(item.classList.contains('_prev')){
+                    webinarItems.forEach(item => item.classList.remove('_active', '_next', '_prev'));
+                    if(item.previousElementSibling){
+                        item.previousElementSibling.classList.add('_prev');
+                    }else{
+                        webinarItems[webinarItems.length - 1].classList.add('_prev');
+                    }
+                    if(item.nextElementSibling){
+                        item.nextElementSibling.classList.add('_next');
+                    }else{
+                        webinarItems[0].classList.add('_next');
+                    }
+                }else{
+                    webinarItems.forEach(item => item.classList.remove('_active', '_next', '_prev'));
+                    if(item.previousElementSibling){
+                        item.previousElementSibling.classList.add('_prev');
+                    }else{
+                        webinarItems[webinarItems.length - 1].classList.add('_prev');
+                    }
+                    if(item.nextElementSibling){
+                        item.nextElementSibling.classList.add('_next');
+                    }else{
+                        webinarItems[0].classList.add('_next');
+                    }
+                }
+                item.classList.add('_active');
+                setActivePoint();
+            }
+            
+        });
+    });
 
 }); // end
