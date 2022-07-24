@@ -15,6 +15,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
    const headerObserver = new IntersectionObserver(callback);
    headerObserver.observe(header);
+   // header links scroll
+   const menuLinks = document.querySelectorAll('.header__link[data-goto]');
+   if(menuLinks.length > 0){
+        function onMenuLinkClick(e){
+            const link = e.target;
+            if(link.dataset.goto && document.querySelector(link.dataset.goto)){
+                const gotoBlock = document.querySelector(link.dataset.goto);
+                const gotoBlockValue = gotoBlock.getBoundingClientRect().top + scrollY - document.querySelector('.header__wrapper').offsetHeight;
+
+                window.scrollTo({
+                    top: gotoBlockValue,
+                    behavior: 'smooth'
+                });
+
+                headerMenu.classList.remove("_active");
+                burger.classList.remove("_active");
+                document.body.classList.remove("_lock");
+                e.preventDefault();
+            }
+        }
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', onMenuLinkClick);
+        });
+   }
 
    // form
    const input = document.querySelector('.hero__input');
@@ -82,7 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 let isCanHover = true;
                 let interval;
                 item.addEventListener('mouseenter', () => {
-                    if(timePass === hoverDuration){
+                    if(isCanHover){
+                        isCanHover = false;
                         timePass = 0;
                         _slideDown(item.querySelector('.classes__bottom'), hoverDuration);
                         interval = clearInterval(interval);
@@ -97,14 +123,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(timePass === hoverDuration){
                         interval = clearInterval(interval);
                         _slideUp(item.querySelector('.classes__bottom'), hoverDuration);
-                    }else if(isCanHover){
+                        timePass = 0;
+                        setTimeout(() => {
+                            isCanHover = true;
+                        }, hoverDuration);
+                    }else if(isCanHover === false && timePass !== 0 && !!interval){
                         interval = clearInterval(interval);
-                        isCanHover = false;
                         setTimeout(() => {
                             _slideUp(item.querySelector('.classes__bottom'), hoverDuration);
                             timePass = 0;
                             setTimeout(() => {
-                                timePass = hoverDuration;
                                 isCanHover = true;
                             }, hoverDuration);
                         }, hoverDuration - timePass);

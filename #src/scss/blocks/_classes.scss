@@ -1,6 +1,6 @@
 .classes {
-   @include adaptiv-value('margin-top', 65, 20, 1);
-   @include adaptiv-value('margin-bottom', 65, 20, 1);
+   @include adaptiv-value('padding-top', 65, 40, 1);
+   @include adaptiv-value('padding-bottom', 65, 20, 1);
    position: relative;
    z-index: 2;
 

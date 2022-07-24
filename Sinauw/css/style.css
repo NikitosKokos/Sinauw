@@ -2110,8 +2110,8 @@ button.swiper-pagination-bullet {
 }
 
 .classes {
-  margin-top: 65px;
-  margin-bottom: 65px;
+  padding-top: 65px;
+  padding-bottom: 65px;
   position: relative;
   z-index: 2;
 }
@@ -3358,15 +3358,15 @@ body._lock {
   }
 
   .benefits {
-    padding-bottom: calc(60px + 40 * ((100vw - 320px) / 880));
+    padding-bottom: calc(40px + 60 * ((100vw - 320px) / 880));
   }
 
   .classes {
-    margin-top: calc(20px + 45 * ((100vw - 320px) / 880));
+    padding-top: calc(40px + 25 * ((100vw - 320px) / 880));
   }
 
   .classes {
-    margin-bottom: calc(20px + 45 * ((100vw - 320px) / 880));
+    padding-bottom: calc(20px + 45 * ((100vw - 320px) / 880));
   }
 
   .classes__descr {
